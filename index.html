@@ -989,31 +989,31 @@
         }
 
         // Funcionalidad del CV
-        const cvPath = '/CV.pdf';
+        const cvPath = 'CV.pdf'; // Actualiza esta ruta con la ubicación correcta de tu CV
         function openCV(event) {
             event.preventDefault();
-            
-            // Verifica si hay un PDF configurado
-            if (cvPath === '/CV.pdf') {
-                alert('Por favor, sube tu CV en PDF y actualiza la variable cvPath en el código con la ruta correcta.');
-                return;
-            }
+            window.open(cvPath, '_blank');
+        }
 
+        // Mostrar el CV automáticamente al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
             const cvPreview = document.getElementById('cvPreview');
-            
-            // Crear iframe para mostrar el PDF
             cvPreview.innerHTML = `
                 <iframe src="${cvPath}" type="application/pdf"></iframe>
             `;
-            
-            // También abrir en nueva pestaña
-            window.open(cvPath, '_blank');
-        }
+
+            // También actualizar el botón de descarga
+            const downloadBtn = document.querySelector('.cv-btn.secondary');
+            if (downloadBtn) {
+                downloadBtn.href = cvPath;
+                downloadBtn.download = 'CV.pdf';
+            }
+        });
 
         // Actualizar el enlace de descarga
         document.addEventListener('DOMContentLoaded', function() {
             const downloadBtn = document.querySelector('.cv-btn.secondary');
-            if (downloadBtn && cvPath !== '/CV.pdf') {
+            if (downloadBtn && cvPath !== 'CV.pdf') {
                 downloadBtn.href = cvPath;
             }
         });
