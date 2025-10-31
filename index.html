@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio - Desarrollador de Software</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 32, 44, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.3rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background: #4299e1;
+            transform: translateY(-2px);
+        }
+
+        /* Banner */
+        #banner {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #banner::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .banner-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .banner-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Secciones */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #2d3748;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Sobre Mi */
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+
+        /* Experiencia */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #667eea;
+        }
+
+        .timeline-item h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .date {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Herramientas y Tecnología */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #718096;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: #edf2f7;
+            color: #667eea;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Lo que puedo aportar */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .value-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: #718096;
+        }
+
+        /* Contacto */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: #764ba2;
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a202c;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .banner-content h1 {
+                font-size: 2rem;
+            }
+
+            .banner-content p {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav>
+        <ul>
+            <li><a href="#banner" class="nav-link">Inicio</a></li>
+            <li><a href="#sobre-mi" class="nav-link">Sobre Mí</a></li>
+            <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
+            <li><a href="#tecnologia" class="nav-link">Tecnología</a></li>
+            <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+            <li><a href="#valor" class="nav-link">Valor</a></li>
+            <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner -->
+    <section id="banner">
+        <div class="banner-content">
+            <h1>Desarrollador de Software</h1>
+            <p>Creando soluciones digitales innovadoras</p>
+            <a href="#contacto" class="btn">¡Trabajemos juntos!</a>
+        </div>
+    </section>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi">
+        <h2>Sobre Mí</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://via.placeholder.com/300x300/667eea/ffffff?text=Tu+Foto" alt="Perfil">
+            </div>
+            <div class="about-text">
+                <p>¡Hola! Soy un desarrollador de software apasionado por crear aplicaciones web y móviles que resuelven problemas reales.</p>
+                <p>Con varios años de experiencia en el desarrollo full-stack, me especializo en crear soluciones escalables y eficientes utilizando las últimas tecnologías.</p>
+                <p>Mi enfoque se centra en escribir código limpio, mantener las mejores prácticas y trabajar en equipo para lograr objetivos comunes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section id="experiencia">
+        <h2>Experiencia</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Desarrollador Full Stack Senior</h3>
+                <div class="date">2022 - Presente</div>
+                <p>Liderando el desarrollo de aplicaciones web empresariales utilizando React, Node.js y bases de datos SQL/NoSQL. Implementación de arquitecturas escalables y mejores prácticas de desarrollo.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Desarrollador Full Stack</h3>
+                <div class="date">2020 - 2022</div>
+                <p>Desarrollo de aplicaciones web responsive y APIs RESTful. Colaboración con equipos multidisciplinarios en proyectos ágiles.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Desarrollador Junior</h3>
+                <div class="date">2018 - 2020</div>
+                <p>Inicio en el desarrollo web con HTML, CSS, JavaScript y frameworks modernos. Aprendizaje continuo y participación en proyectos diversos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Herramientas y Tecnología -->
+    <section id="tecnologia">
+        <h2>Herramientas y Tecnología</h2>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon">⚛️</div>
+                <h3>React</h3>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📗</div>
+                <h3>Node.js</h3>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🐍</div>
+                <h3>Python</h3>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🗄️</div>
+                <h3>MongoDB</h3>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🐘</div>
+                <h3>PostgreSQL</h3>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🐳</div>
+                <h3>Docker</h3>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">☁️</div>
+                <h3>AWS</h3>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📱</div>
+                <h3>React Native</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos">
+        <h2>Proyectos</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🛒</div>
+                <div class="project-content">
+                    <h3>E-Commerce Platform</h3>
+                    <p>Plataforma completa de comercio electrónico con pasarela de pagos, gestión de inventario y panel administrativo.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">📊</div>
+                <div class="project-content">
+                    <h3>Dashboard Analítico</h3>
+                    <p>Dashboard interactivo para visualización de datos empresariales en tiempo real con gráficos dinámicos.</p>
+                    <div class="project-tags">
+                        <span class="tag">Vue.js</span>
+                        <span class="tag">D3.js</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">📱</div>
+                <div class="project-content">
+                    <h3>App Móvil de Gestión</h3>
+                    <p>Aplicación móvil para gestión de tareas y proyectos con sincronización en la nube.</p>
+                    <div class="project-tags">
+                        <span class="tag">React Native</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Redux</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lo que puedo aportar -->
+    <section id="valor">
+        <h2>Lo que puedo aportar</h2>
+        <div class="value-grid">
+            <div class="value-card">
+                <div class="value-icon">💡</div>
+                <h3>Soluciones Innovadoras</h3>
+                <p>Enfoque creativo para resolver problemas complejos con tecnologías modernas.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚡</div>
+                <h3>Desarrollo Ágil</h3>
+                <p>Entrega rápida y eficiente siguiendo metodologías ágiles y mejores prácticas.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>Código de Calidad</h3>
+                <p>Código limpio, documentado y mantenible que escala con tu negocio.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>Trabajo en Equipo</h3>
+                <p>Colaboración efectiva con equipos multidisciplinarios y comunicación clara.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <h2>Contáctame</h2>
+        <div class="contact-content">
+            <p>¿Tienes un proyecto en mente? ¡Me encantaría escucharlo!</p>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+            </form>
+            <div class="social-links">
+                <a href="#" title="GitHub">🐙</a>
+                <a href="#" title="LinkedIn">💼</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="Email">📧</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Mi Portfolio. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Navegación dinámica con scroll suave
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animación de entrada para elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.tech-item, .project-card, .value-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Manejo del formulario
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('¡Gracias por tu mensaje! Te contactaré pronto.');
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>
