@@ -720,8 +720,8 @@
     <!-- Banner -->
     <section id="banner">
         <div class="banner-content">
-            <h1>Desarrollador de Software</h1>
-            <p>Creando soluciones digitales innovadoras</p>
+            <h1>Joan Albert Chías Català</h1>
+            <p>Desarrollador de Software</p>
             <a href="#contacto" class="btn">¡Trabajemos juntos!</a>
         </div>
     </section>
@@ -746,9 +746,6 @@
                         <span>⬇️</span> Descargar CV
                     </a>
                 </div>
-                <p style="text-align: center; color: #718096; font-size: 0.9rem; margin-top: 0.5rem;">
-                    <em>Sube tu CV en formato PDF para mostrarlo aquí</em>
-                </p>
             </div>
             <div class="about-text">
                 <p>¡Hola! Soy un desarrollador de software apasionado por crear aplicaciones web y móviles que resuelven problemas reales.</p>
@@ -992,14 +989,13 @@
         }
 
         // Funcionalidad del CV
-        // IMPORTANTE: Reemplaza 'TU_CV.pdf' con la ruta a tu archivo PDF
-        const cvPath = 'TU_CV.pdf'; // Cambia esto por la ruta a tu CV
-
+        // IMPORTANTE: Reemplazar 'TU_CV.pdf' si se cambia el nombre del archivo
+        const cvPath = 'CV_DEV_2.0.pdf';
         function openCV(event) {
             event.preventDefault();
             
             // Verifica si hay un PDF configurado
-            if (cvPath === 'TU_CV.pdf') {
+            if (cvPath === 'CV_DEV_2.0.pdf') {
                 alert('Por favor, sube tu CV en PDF y actualiza la variable cvPath en el código con la ruta correcta.');
                 return;
             }
@@ -1018,7 +1014,7 @@
         // Actualizar el enlace de descarga
         document.addEventListener('DOMContentLoaded', function() {
             const downloadBtn = document.querySelector('.cv-btn.secondary');
-            if (downloadBtn && cvPath !== 'TU_CV.pdf') {
+            if (downloadBtn && cvPath !== 'CV_DEV_2.0.pdf') {
                 downloadBtn.href = cvPath;
             }
         });
