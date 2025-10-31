@@ -989,13 +989,12 @@
         }
 
         // Funcionalidad del CV
-        // IMPORTANTE: Reemplazar 'TU_CV.pdf' si se cambia el nombre del archivo
-        const cvPath = 'CV_DEV_2.0.pdf';
+        const cvPath = 'CV.pdf';
         function openCV(event) {
             event.preventDefault();
             
             // Verifica si hay un PDF configurado
-            if (cvPath === 'CV_DEV_2.0.pdf') {
+            if (cvPath === 'CV.pdf') {
                 alert('Por favor, sube tu CV en PDF y actualiza la variable cvPath en el código con la ruta correcta.');
                 return;
             }
@@ -1014,7 +1013,7 @@
         // Actualizar el enlace de descarga
         document.addEventListener('DOMContentLoaded', function() {
             const downloadBtn = document.querySelector('.cv-btn.secondary');
-            if (downloadBtn && cvPath !== 'CV_DEV_2.0.pdf') {
+            if (downloadBtn && cvPath !== 'CV.pdf') {
                 downloadBtn.href = cvPath;
             }
         });
